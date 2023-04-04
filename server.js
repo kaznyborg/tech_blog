@@ -9,7 +9,7 @@ const routes = require('./controllers');
 exphbs.hotreload();
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 3001;
 
 //connect-session-sequelize sets up a session store table in the database, to replace in-memory storage
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -48,10 +48,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //apply routing middleware
 app.use(routes);
-
+sequelize.sync({ force: false });
 //turn on connection to db and server
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
-  sequelize.sync({ force: false });
+ 
 });
 
