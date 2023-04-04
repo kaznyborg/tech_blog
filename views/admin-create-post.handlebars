@@ -1,0 +1,25 @@
+<form name ="new-post" id="new-post">
+  <input type="text" name ="title" id="title" placeholder="Your Title"> 
+  <textarea placeholder="Your thoughts" name ="body" id="body" cols="30" rows="10"></textarea>
+  <button type="submit" id="submit">Create Post</button>
+</form>
+<script>
+  document.querySelector('#new-post').addEventListener("submit", async (event) => {
+    event.preventDefault(); 
+    const response = await fetch('/dashboard/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: document.querySelector('#title').value,
+        body: document.querySelector('#body').value
+      })
+    })
+    if (response.ok) {
+    document.location.replace('/dashboard');
+  } else {
+    alert('Failed to post');
+  }
+  }) 
+</script>
