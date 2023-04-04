@@ -1,0 +1,39 @@
+<div
+  class="col-md-8"
+  id="post"
+  style="border-radius:5px; border-style:inset; border-width: 4px;margin-bottom:15;"
+>
+  <h4>Post ID: {{posts.id}}</h4>
+  <a href="/post/{{posts.id}}" id="posttitle">
+    <h3>{{posts.title}}</h3>
+  </a>
+  <p>{{posts.body}}</p>
+  <p>Posted by :<strong>{{posts.user.username}}</strong></p>
+  <div
+    id="comments"
+    style="border-radius:5px; border-style:inset; border-width: 4px;margin-bottom:15; align-content:center;"
+  >
+    <p>Comments:</p>
+    {{#each posts.comments as |comment|}}
+      {{comment.body}}
+      {{!-- {{>comment comment}} --}}
+    {{/each}}
+  </div>
+</div>
+<article>
+  <form method="POST" action="/api/comment/createComment/{{posts.id}}">
+    <div class="input-field">
+      <label>Comment: </label>
+      <textarea
+        type="text"
+        name="body"
+        placeholder="Comment?"
+        cols="30"
+        rows="5"
+      ></textarea>
+    </div>
+    <input type="hidden" name="comment-id" value={{id}} />
+    <button type="submit">Add Comment</button>
+
+  </form>
+</article>
