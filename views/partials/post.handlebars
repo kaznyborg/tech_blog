@@ -1,0 +1,20 @@
+<style>
+  .post {
+    border: 2px solid red;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+  }
+
+  .post h2{
+
+  }
+</style>
+
+<div class="post">
+  <h2><a href ='post/{{id}}''>{{title}}</a></h2>
+  <p>{{body}}</p>
+  <p>Posted by {{user.username}}</p>
+  <p>Posted on {{format_date createdAt}}</p>
+</div>
+
